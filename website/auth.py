@@ -12,7 +12,7 @@ def signup():
     if request.method=='POST':
         email=request.form.get('email')
         firstName=request.form.get('firstName')
-        secondName=request.form.get('secondName')
+        secondName=request.form.get('lastName')
         password1=request.form.get('password1')
         password2=request.form.get('password2')
         if len(email)<5:
