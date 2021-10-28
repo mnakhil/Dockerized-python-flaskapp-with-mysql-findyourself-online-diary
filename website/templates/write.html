@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %}{{user.firstName}}{% endblock %}
+{% block mainbody %}
+<img src="\static\write.png" class="rounded mx-auto d-block img-fluid" width="900 " height="225"> 
+
+<div class="container p-4 my-4 text-white" style="background-color: gainsboro; width: 70%;">
+<form method='POST'>
+    <textarea name='data' id='data' class="form-control" id="exampleFormControlTextarea3" rows="17"></textarea></textarea>
+    <div align="center"><br>
+        <select class="mdb-select md-form colorful-select dropdown-primary" aria-label="Default select example" name="privacy">
+            <option selected value="1">Private</option>
+            <option value="2">Public</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Add Diary</button>
+    </div>
+<br><br>
+</form>
+</div>
+<br><br>
+{% endblock %}

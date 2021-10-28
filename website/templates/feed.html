@@ -3,15 +3,19 @@
 {% block mainbody %}
 <img src="\static\yourentries.png" class="rounded mx-auto d-block img-fluid" width="600 " height="150"> 
 
-    {% for entry in user.diaries %}
+    
+    {% for user in diaries %}
+    
+    {% for entry in user.privacy %}
     <br>
     <div class="container p-4 my-4 text-white" style="background-color: gray; width: 70%;">
-      {{entry.date}}<hr><br>  <h4 style="text-align:justify;">{{entry.data}}</h4>
+      {{user.date}}<hr><br>  <h4 style="text-align:justify;">{{user.data}}</h4>
 
     </div>
-    
-
+   
     {% endfor %}
+    {% endfor %}
+   
 
 <br><br><br><br><br><br><br><br>
 {% endblock %}
