@@ -11,6 +11,7 @@ def login():
     if request.method=='POST':
         email=request.form.get('email')
         password=request.form.get('password')
+        print(email)
         if len(email)<6:
             flash('Email must have more than 5 letters',category='error')
         user= User.query.filter_by(email=email).first() 
@@ -20,6 +21,7 @@ def login():
             if check_password_hash(user.password,password):
                 flash('Logged in successfully.', category='success')
                 login_user(user,remember=True)
+                return redirect(url_for('views.account'))
             else:
                 flash('Incorrect password, try again!', category='error')
         else:
@@ -30,7 +32,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return render_template('login.html',user=current_user)
+    return redirect(url_for('auth.login'))
 
 @auth.route('/signup',methods=['GET','POST'])
 def signup():

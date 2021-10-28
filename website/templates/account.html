@@ -2,4 +2,20 @@
 {% block title %}{{user.firstName}}{% endblock %}
 {% block mainbody %}
 
+<form method='POST'>
+    <textarea name='data' id='data' class="form-control"></textarea>
+    <div align="center"><br>
+        <button type="submit" class="btn btn-primary">Add Diary</button>
+    </div>
+    {% for entry in user.diaries %}
+    <br>
+    <div class="container p-4 my-4 text-white" style="background-color: gray;">
+      {{entry.date}}<br>  {{entry.data}}
+
+    </div>
+    
+
+    {% endfor %}
+</form>
+<br><br><br><br><br><br><br><br>
 {% endblock %}
