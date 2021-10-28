@@ -1,9 +1,9 @@
 {% extends "main.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Login{% endblock %}
 {% block mainbody %}
 <div class="login-form">
   <img src="\static\heading001.png" class="rounded mx-auto d-block img-fluid" width="642" height="153"> 
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form method="POST">
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" required="required" name="email">
@@ -21,4 +21,5 @@
     </form>
     <p class="text-center"><a href="/sighnup">Create an Account</a></p>
 </div>
+<br><br><br><br>
 {% endblock %}
