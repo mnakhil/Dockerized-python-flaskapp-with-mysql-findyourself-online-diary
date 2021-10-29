@@ -1,8 +1,12 @@
 #from warnings import catch_warnings
-from flask import Blueprint,render_template,flash,request
+from flask import Blueprint,render_template,flash,request,jsonify
+from flask.helpers import url_for
 from flask_login import login_required,current_user
 from flask_login.utils import _get_user
+import json
+from sqlalchemy.orm import session
 
+from werkzeug.utils import redirect
 from .model import Diary
 from . import db
 
@@ -43,3 +47,52 @@ def feed():
     diary=Diary.query.filter_by(privacy='2').all()
     #print(diary[0].id)
     return render_template("feed.html",user=current_user,diaries=diary)
+
+@views.route('/deleteEntry', methods=['POST'] )
+def deleteEntry():
+    entry=json.loads(request.data)
+    noteId=entry['noteId']
+    note=Diary.query.get(noteId)
+    print(note)
+    if note:
+        if note.user_id==current_user.id:
+            db.session.delete(note)
+            db.session.commit()
+    return jsonify({})
+
+@views.route('/updateEntry/<int:id>', methods=['POST','GET'] )
+def updateEntry(id):
+    #entry=json.loads(request.data)
+    
+    note=Diary.query.filter_by(id=id).first()
+    print(note.name)
+    if note:
+        if note.user_id==current_user.id:
+            return redirect(url_for('views.update',id=note.id,user=current_user))
+    return flash("Update Your data here.",category="success")
+
+
+
+
+@views.route('/update', methods=['POST', 'GET'])
+def update():
+    #entry=Diary.query.get(id)
+    data=int(request.args.get('id'))
+    entry=Diary.query.filter_by(id=data).first()
+    print(entry.data)
+    
+    print(entry.name)
+    if request.method=='POST':
+        
+        data=request.form.get('data')
+        privacy=request.form.get('privacy')
+        
+        if len(data)<1:
+            flash('The Diary entry is too short.',category="error")
+        else:
+            entry.data=data
+            entry.privacy=privacy
+            db.session.commit()
+            flash('Diary updated.',category='success')
+            return render_template('account.html',user=current_user)
+    return render_template('update.html',user=current_user,entryid=entry)

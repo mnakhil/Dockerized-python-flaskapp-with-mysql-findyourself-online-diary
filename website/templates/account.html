@@ -6,11 +6,19 @@
     {% for entry in user.diaries %}
     <br>
     <div class="container rounded p-4 my-4 text-white" style="background-color: gainsboro; width: 70%;">
-      <h7 style="color: black;">{{entry.date}}</h7><br>
+        
+            
+         <div class="p-2 bd-highlight"  style="text-align: right;">
+            <div class="row" style="float: right;">
+            <form action="/updateEntry/{{entry.id}}" method="POST">
+            <button type="submit" class="btn btn-outline-primary">Edit</button></form>&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-danger" onClick="deleteEntry({{ entry.id }}) ">Delete</button></div>
+        </div>
+          <h7 style="color: black;">{{entry.date}}</h7>
       {% if entry.privacy=='2' %}
-      <h6 style="color:blue;">Public</h6>
+      <h6 style="color:blue;">  Public</h6>
       {% else %}
-      <h6 style="color:blue;">Private</h6>
+      <h6 style="color:blue;">  Private</h6>
       {% endif %}
       <hr><br>  <h5 style="text-align:justify; color: black;">{{entry.data}}</h5>
 
