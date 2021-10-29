@@ -10,13 +10,17 @@ class User(db.Model,UserMixin):
     firstName=db.Column(db.String(150))
     lastName=db.Column(db.String(150))
     password=db.Column(db.String(150))
+    secQuestion=db.Column(db.String(30))
+    answer=db.Column(db.String(30))
     diaries=db.relationship('Diary')
 
-    def __init__(self,email,firstName,lastName,password):
+    def __init__(self,email,firstName,lastName,password,secQuestion,answer):
         self.email=email
         self.firstName=firstName
         self.lastName=lastName
         self.password=password
+        self.secQuestion=secQuestion
+        self.answer=answer
 
 class Diary(db.Model):
     id=db.Column(db.Integer, primary_key=True)

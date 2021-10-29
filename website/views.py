@@ -1,4 +1,5 @@
 #from warnings import catch_warnings
+from re import template
 from flask import Blueprint,render_template,flash,request,jsonify
 from flask.helpers import url_for
 from flask_login import login_required,current_user
@@ -49,6 +50,7 @@ def feed():
     return render_template("feed.html",user=current_user,diaries=diary)
 
 @views.route('/deleteEntry', methods=['POST'] )
+@login_required
 def deleteEntry():
     entry=json.loads(request.data)
     noteId=entry['noteId']
@@ -61,6 +63,7 @@ def deleteEntry():
     return jsonify({})
 
 @views.route('/updateEntry/<int:id>', methods=['POST','GET'] )
+@login_required
 def updateEntry(id):
     #entry=json.loads(request.data)
     
@@ -75,6 +78,7 @@ def updateEntry(id):
 
 
 @views.route('/update', methods=['POST', 'GET'])
+@login_required
 def update():
     #entry=Diary.query.get(id)
     data=int(request.args.get('id'))
@@ -96,3 +100,11 @@ def update():
             flash('Diary updated.',category='success')
             return render_template('account.html',user=current_user)
     return render_template('update.html',user=current_user,entryid=entry)
+
+@views.route('/forgotPass')
+def forgotPass():
+    return render_template("forgotPass.html",user=current_user)
+
+@views.route('/about')
+def about():
+    return render_template("about.html",user=current_user)

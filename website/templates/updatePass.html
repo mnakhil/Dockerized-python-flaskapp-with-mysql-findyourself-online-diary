@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block title %}Login{% endblock %}
+{% block mainbody %}
+<div class="login-form">
+  <img src="\static\heading001.png" class="rounded mx-auto d-block img-fluid" width="642" height="153"> 
+    <form method="POST">
+        <h2 class="text-center">Update Password</h2>       
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required" name="password1" id="password1">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confrim Password" required="required" name="password2" id="password2">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+    </form>
+    
+</div>
+<br><br><br><br>
+{% endblock %}
