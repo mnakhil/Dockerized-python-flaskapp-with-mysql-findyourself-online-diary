@@ -40,7 +40,9 @@
   transform: scale(1, 1);  
   opacity:1;
 }
-  
+.rounded {
+    border-radius:.7rem!important
+} 
 /* .dropdown-menu {
   opacity:.3;
   -webkit-transform-origin: top;
@@ -140,14 +142,14 @@ text-align: center;
     {% for category,message in messages %}
     {% if category=='error' %}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      {{message}} Please Try again.
+      {{message}} 
       <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
     </div>
     
     {% else %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{message}}
-     <a href="/login" st>Click here to login.</a>
+     
      <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
     </div>
     {% endif %}

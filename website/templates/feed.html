@@ -1,15 +1,17 @@
 {% extends "main.html" %}
 {% block title %}{{user.firstName}}{% endblock %}
 {% block mainbody %}
-<img src="\static\yourentries.png" class="rounded mx-auto d-block img-fluid" width="600 " height="150"> 
+<img src="\static\feed.png" class="rounded mx-auto d-block img-fluid" width="600 " height="150"> 
 
     
     {% for user in diaries %}
     
     {% for entry in user.privacy %}
+   
     <br>
-    <div class="container p-4 my-4 text-white" style="background-color: gray; width: 70%;">
-      {{user.date}}<hr><br>  <h4 style="text-align:justify;">{{user.data}}</h4>
+    <div class="container rounded p-4 my-4 text-white" style="background-color: gainsboro; width: 70%;">
+       <h6 style="color: black;">Posted: </h6> <h5 style="color:red;">{{user.name}}</h5>
+      <h7 style="color: black;">{{user.date}}</h7><hr><br>  <h5 style="text-align:justify; color: black;">{{user.data}}</h5>
 
     </div>
    
