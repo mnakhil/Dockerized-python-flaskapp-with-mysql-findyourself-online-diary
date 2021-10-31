@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+flask-login
+sqlalchemy-utils
+mysqlclient
+mysql.connector
