@@ -8,14 +8,14 @@ from sqlalchemy_utils.functions.database import create_database
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-DB_NAME='diarydb'
+
 
 
 
 def create_app():
     app=Flask(__name__)
     app.config['SECRET_KEY']="13A31M01N"
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql://root:133101mys0l@127.0.0.1:3307/{DB_NAME}"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@db/diarydb"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # app.config['MYSQL_HOST']='127.0.0.1:3307'
     # app.config['MYSQL_USER']='root'
@@ -31,7 +31,7 @@ def create_app():
 
     from .model import User,Diary
     
-    create_db(app)
+    # create_db(app)
     # with app.app_context():
     #     db.create_all()
     login_manager=LoginManager()
@@ -44,11 +44,11 @@ def create_app():
 
     return app
 
-def create_db(app):
-    if not database_exists('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME):
-        create_database('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME)
-        with app.app_context():
-            db.create_all()
-        print("Database created.")
+# def create_db(app):
+#     if not database_exists('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME):
+#         create_database('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME)
+#         with app.app_context():
+#             db.create_all()
+#         print("Database created.")
 
 

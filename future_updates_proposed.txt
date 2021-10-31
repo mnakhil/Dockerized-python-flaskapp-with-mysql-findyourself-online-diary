@@ -1,3 +1,0 @@
-# users can choose their thoughts to be public or private
-# users can choose whether others can see their name or not.
-# users can see their public and private diary entries seperately
