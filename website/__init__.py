@@ -15,7 +15,7 @@ db = SQLAlchemy()
 def create_app():
     app=Flask(__name__)
     app.config['SECRET_KEY']="13A31M01N"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@db/diarydb"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@db:3306/diarydb"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # app.config['MYSQL_HOST']='127.0.0.1:3307'
     # app.config['MYSQL_USER']='root'
@@ -45,8 +45,8 @@ def create_app():
     return app
 
 # def create_db(app):
-#     if not database_exists('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME):
-#         create_database('mysql://root:133101mys0l@127.0.0.1:3307/'+DB_NAME)
+#     if not database_exists('mysql://root:root@db:3306/diarydb'):
+#         create_database('mysql://root:root@db:3306/diarydb')
 #         with app.app_context():
 #             db.create_all()
 #         print("Database created.")

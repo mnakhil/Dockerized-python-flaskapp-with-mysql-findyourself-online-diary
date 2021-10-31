@@ -2,13 +2,21 @@ version: "3.5"
 services:
   app:
     build: ./
+    
     links:
       - db
-    depends_on:
-      - db
+    
     # command: ["db", "python", "app.py"]
     ports:
       - "5000:5000"
+
+    # depends_on:
+    #   - db
+
+    environment:
+       MYSQL_ROOT_PASSWORD: 'root'
+       MYSQL_DATABASE: 'diarydb'
+       
   
   db:
     image: mysql:8.0.27
@@ -17,10 +25,11 @@ services:
     ports:
       - '3307:3306'
     environment:
-    
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: diarydb
+      # MYSQL_DATABASE: diarydb
       MYSQL_HOST: db
     volumes:
       - ./db:/var/lib/mysql
       - ./db_data:/docker-entrypoint-initdb.d/:ro
+      
+      
